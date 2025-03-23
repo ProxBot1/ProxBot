@@ -5,219 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProxBot</title>
     <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #121212; /* Dark Black background for body */
-            color: white; /* White text for readability */
-            overflow: hidden; /* Prevent scrolling caused by floating shapes */
-        }
+      <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>ProxBot</title>
+     <style>
+         body {
+             font-family: sans-serif;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             height: 100vh;
+             margin: 0;
+             background-color: #333; /* Dark gray background for body */
+             color: black; /* Optional: Set default text color to white for dark background */
+         }
 
-        h1 {
-            text-align: center; /* Center the title */
-            color: #ff4d4d; /* Bright red title */
-        }
+         h1 {
+             text-align: center; /* Center the title */
+         }
 
-        #chat-container {
-            width: 80%;
-            max-width: 600px; /* Limit width on larger screens */
-            border: 1px solid #8B0000; /* Dark red border */
-            border-radius: 8px;
-            overflow: hidden; /* Prevents content from overflowing */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: #1a1a1a; /* Slightly lighter black for chat container */
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            height: 70vh; /* Set a fixed height for the chat container */
-        }
+         #chat-container {
+             width: 80%;
+             max-width: 600px; /* Limit width on larger screens */
+             border: 1px solid #ccc;
+             border-radius: 8px;
+             overflow: hidden; /* Prevents content from overflowing */
+             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+             background-color: #555; /* Lighter dark gray for chat container */
+             margin-top: 20px;
+             display: flex;
+             flex-direction: column;
+             height: 70vh; /* Set a fixed height for the chat container */
+         }
 
-        #chat-history {
-            flex-grow: 1; /* Makes the chat history fill available space */
-            padding: 10px;
-            overflow-y: auto; /* Adds vertical scrolling */
-            border-bottom: 1px solid #8B0000; /* Dark red border for chat history */
-            color: white; /* Ensure chat text is visible on dark background */
-        }
+         #chat-history {
+             flex-grow: 1; /* Makes the chat history fill available space */
+             padding: 10px;
+             overflow-y: auto; /* Adds vertical scrolling */
+             border-bottom: 1px solid #ccc;
+             color: white; /* Ensure chat text is visible on dark background */
+         }
 
-        #input-area {
-            display: flex;
-            padding: 10px;
-            background-color: #333; /* Dark gray input area */
-        }
+         #input-area {
+             display: flex;
+             padding: 10px;
+             background-color: #555; /* Match input area background to chat container */
+         }
 
-        #user-input {
-            flex-grow: 1;
-            padding: 8px;
-            border: 1px solid #8B0000; /* Dark red border */
-            border-radius: 4px;
-            margin-right: 10px;
-            resize: none; /* Prevent textarea resizing */
-            background-color: #f0f0f0; /* Light background for input */
-            color: black; /* Dark text for input */
-        }
+         #user-input {
+             flex-grow: 1;
+             padding: 8px;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             margin-right: 10px;
+             resize: none; /* Prevent textarea resizing */
+             background-color: #f0f0f0; /* Light background for input */
+             color: black; /* Dark text for input */
+         }
 
-        #send-button {
-            padding: 8px 15px;
-            background-color: #ff4d4d; /* Bright Red */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+         #send-button {
+             padding: 8px 15px;
+             background-color: #4CAF50;
+             color: white;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+         }
 
-        #send-button:hover {
-            background-color: #d43f3f; /* Darker red on hover */
-        }
+         #send-button:disabled {
+             background-color: #cccccc;
+             cursor: not-allowed;
+         }
 
-        #send-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
+         #spinner {
+             display: none; /* Hidden by default */
+             margin-left: 10px;
+             border: 4px solid #f3f3f3; /* Light grey */
+             border-top: 4px solid #3498db; /* Blue */
+             border-radius: 50%;
+             width: 20px;
+             height: 20px;
+             animation: spin 2s linear infinite;
+         }
 
-        #spinner {
-            display: none; /* Hidden by default */
-            margin-left: 10px;
-            border: 4px solid #f3f3f3; /* Light grey */
-            border-top: 4px solid #3498db; /* Blue */
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 2s linear infinite;
-        }
+         @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+         .message {
+             margin-bottom: 10px;
+             padding: 8px;
+             border-radius: 4px;
+             color: white; /* Message text color is now white */
+         }
 
-        .message {
-            margin-bottom: 10px;
-            padding: 8px;
-            border-radius: 4px;
-            color: white; /* Message text color is now white */
-        }
+         .user-message {
+             background-color: #333; /* Dark gray for user messages - same as body */
+             text-align: right; /* Align user messages to the right */
+             margin-left: 20%; /* Push user messages to the right */
+         }
 
-        .user-message {
-            background-color: #333; /* Dark gray for user messages */
-            text-align: right; /* Align user messages to the right */
-            margin-left: 20%; /* Push user messages to the right */
-        }
+         .ai-message {
+             background-color: #333; /* Dark gray for AI messages - same as body */
+             margin-right: 20%; /* Push AI messages to the left */
+         }
 
-        .ai-message {
-            background-color: #333; /* Dark gray for AI messages */
-            margin-right: 20%; /* Push AI messages to the left */
-        }
+         /* --- Settings Modal Styles --- */
 
-        /* --- Floating Shapes Animation --- */
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Place the floating shapes behind the content */
-            pointer-events: none; /* Prevent the shapes from interfering with user interactions */
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: floatShapes 15s infinite;
-        }
-
-        .shape:nth-child(odd) {
-            animation-duration: 12s;
-            animation-delay: 2s;
-        }
-
-        .shape:nth-child(even) {
-            animation-duration: 10s;
-            animation-delay: 4s;
-        }
-
-        .shape-1 {
-            background-color: #8B0000; /* Dark Red */
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 50%;
-        }
-
-        .shape-2 {
-            background-color: #B22222; /* Firebrick */
-            width: 100px;
-            height: 100px;
-            top: 50%;
-            left: 70%;
-        }
-
-        .shape-3 {
-            background-color: #D32F2F; /* Red */
-            width: 120px;
-            height: 120px;
-            top: 70%;
-            left: 30%;
-        }
-
-        .shape-4 {
-            background-color: #FF6347; /* Tomato */
-            width: 60px;
-            height: 60px;
-            top: 40%;
-            left: 10%;
-        }
-
-        @keyframes floatShapes {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(calc(500px * (2 - 1)), calc(500px * (2 - 1)));
-            }
-        }
-
-        /* --- Settings Modal Styles --- */
-        #settings-modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
-        
-</head>
-<body>
-    <h1>ProxBot</h1>
-
-    <!-- Floating Shapes -->
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
-    </div>
-
-    <div id="chat-container">
-        <div id="chat-history"></div>
-
-        <div id="input-area">
-            <textarea id="user-input" rows="3" placeholder="Type your message..."></textarea>
-            <button id="send-button">Send</button>
-            <div id="spinner"></div>
-        </div>
-    </div>
-</body>
-</html>
-
+         #settings-modal {
+             display: none; /* Hidden by default */
+             position: fixed;
+             z-index: 1;
+             left: 0;
+             top: 0;
+             width: 100%;
+             height: 100%;
+             overflow: auto;
+             background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
          }
 
          #settings-content {
@@ -359,6 +267,9 @@
          .safety-setting-group select {
              width: 95%; /* Match input width */
          }
+
+     </style>
+         
 
      </style>
  </head>
