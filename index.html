@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProxBot</title>
-    <style>
-      <!DOCTYPE html>
+ <!DOCTYPE html>
  <html lang="en">
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>ProxBot</title>
+     <title>StellarAI</title>
      <style>
          body {
              font-family: sans-serif;
@@ -269,12 +262,9 @@
          }
 
      </style>
-         
-
-     </style>
  </head>
  <body>
-     <h1>ProxBot</h1>
+     <h1>StellarAI</h1>
 
      <!-- Settings Modal (Simplified) -->
      <div id="settings-modal">
@@ -284,7 +274,7 @@
 
              <!-- AI Selection Buttons -->
              <div id="ai-selection">
-                 <button type="button" class="ai-button" data-provider="ProxBot" onclick="selectAi('ProxBot')">ProxBot</button>
+                 <button type="button" class="ai-button" data-provider="stellarai" onclick="selectAI('stellarai')">StellarAI</button>
                  <button type="button" class="ai-button" data-provider="openai" onclick="selectAI('openai')">ChatGPT</button>
                  <button type="button" class="ai-button" data-provider="anthropic" onclick="selectAI('anthropic')">Claude</button>
              </div>
@@ -312,7 +302,7 @@
                  <label for="stopSequencesInput">Stop Sequences (comma-separated):</label>
                  <input type="text" id="stopSequencesInput" placeholder="e.g., stop, end">
 
-                 <!-- Safety Settings (ProxBot/Gemini Only) -->
+                 <!-- Safety Settings (StellarAI/Gemini Only) -->
                  <div id="safetySettingsContainer">
                      <h3>Safety Settings</h3>
                      <div id="safetySettings">
@@ -346,12 +336,12 @@
 
          // *** PLACE YOUR API KEYS HERE ***
          const apiKeys = {
-             ProxBot: "AIzaSyCwRGkB59np3kppkEMLSyfY7GuyDTNVUFw",
+             stellarai: "AIzaSyCwRGkB59np3kppkEMLSyfY7GuyDTNVUFw",
              openai: "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",
              anthropic: "YOUR_ANTHROPIC_API_KEY" // Claude Key
          }; // Fixed missing closing brace
 
-         let currentProvider = "ProxBot";
+         let currentProvider = "stellarai";
          let currentModel = "gemini-1.5-flash";
          let currentTemperature = 0.7;
          let currentStopSequences = [];
@@ -376,7 +366,7 @@
 
              let data, headers, url;
 
-             if (currentProvider === "ProxBot") {
+             if (currentProvider === "stellarai") {
                  const safetySettings = currentSafetySettings;
                  const generationConfig = {
                      temperature: currentTemperature,
@@ -443,7 +433,7 @@
                  const result = await response.json();
                  let responseText = "";
 
-                 if (currentProvider === "ProxBot") { // Changed provider name
+                 if (currentProvider === "stellarai") { // Changed provider name
                      if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
                          responseText = result.candidates[0].content.parts[0].text;
                      }
@@ -609,7 +599,7 @@
              updateModelOptions();
              //Show/hide safety settings.
              const safetySettingsContainer = document.getElementById('safetySettingsContainer');
-             safetySettingsContainer.style.display = currentProvider ==='ProxBot' ? 'block': 'none';
+             safetySettingsContainer.style.display = currentProvider ==='stellarai' ? 'block': 'none';
 
          }
          function updateModelOptions() {
@@ -643,7 +633,7 @@
                  .filter(s => s !== "");
 
              // Safety Settings (Gemini only)
-             if (currentProvider === "ProxBot") {
+             if (currentProvider === "stellarai") {
                  currentSafetySettings = [];
                  const safetySettingsDiv = document.getElementById('safetySettings');
                  const safetyGroups = safetySettingsDiv.querySelectorAll('.safety-setting-group');
