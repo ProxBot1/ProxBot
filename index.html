@@ -500,6 +500,26 @@
          // --- UI Functions ---
 
          function sendMessage() {
+    const userInput = document.getElementById('user-input').value.trim();
+    if (!userInput) return;
+
+    displayUserMessage(userInput);
+    document.getElementById('user-input').value = '';
+    enableInput(); // Changed from disableInput() to enableInput()
+
+    // Commented out the generateText function
+    // generateText(userInput)
+    //     .then(responseText => {
+    //         enableInput();
+    //         if (responseText) {
+    //             displayAiMessage(responseText);
+
+    //             // Add messages to chat history and display it
+    //             chatHistory.push("You: " + userInput);
+    //             chatHistory.push(currentProvider.charAt(0).toUpperCase() + currentProvider.slice(1) + ": " + responseText);
+    //             displayChatHistory();
+    //         }
+    //     });
               if (userInput.includes("hello")) {
         botResponse = "Hi there!";
     } else if (userInput.includes("how are you")) {
