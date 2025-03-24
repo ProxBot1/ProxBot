@@ -500,20 +500,132 @@
          // --- UI Functions ---
 
          function sendMessage() {
-             const userInput = document.getElementById('user-input').value.trim();
-             if (!userInput) return;
-
-             displayUserMessage(userInput);
-             document.getElementById('user-input').value = '';
-             disableInput();
-
-             generateText(userInput)
-                 .then(responseText => {
-                     enableInput();
-                     if (responseText) {
-                         displayAiMessage(responseText);
-                     }
-                 });
+              if (userInput.includes("hello")) {
+        botResponse = "Hi there!";
+    } else if (userInput.includes("how are you")) {
+        botResponse = "I'm doing well, thanks!";
+    } else if (userInput.includes("what is your name")) {
+        botResponse = "I'm ProxBot!";
+    } else if (userInput.includes("what time is it")) {
+        const now = new Date();
+        botResponse = "It's " + now.toLocaleTimeString();
+    } else if (userInput.includes("tell me a joke")) {
+        botResponse = "Why don't scientists trust atoms? Because they make up everything!";
+    } else if (userInput.includes("how old are you")) {
+        botResponse = "I'm a bot, so I don't really have an age!";
+    } else if (userInput.includes("what are you made of")) {
+        botResponse = "I'm made of code and good vibes!";
+    } else if (userInput.includes("do you like pizza")) {
+        botResponse = "I can't eat, but I hear pizza is awesome!";
+    } else if (userInput.includes("what is your favorite color")) {
+        botResponse = "I like all the colors of the rainbow!";
+    } else if (userInput.includes("can you sing")) {
+        botResponse = "I can't sing, but I can tell you a joke!";
+    } else if (userInput.includes("are you a robot")) {
+        botResponse = "You got it! I'm a friendly robot helper.";
+    } else if (userInput.includes("what is the weather")) {
+        botResponse = "I don't know the weather, but I hope it's sunny!";
+    } else if (userInput.includes("tell me a secret")) {
+        botResponse = "I know all the best knock-knock jokes!";
+    } else if (userInput.includes("do you have any friends")) {
+        botResponse = "You're my friend!";
+    } else if (userInput.includes("what is your favorite game")) {
+        botResponse = "I like playing word games!";
+    } else if (userInput.includes("can you dance")) {
+        botResponse = "I can do a virtual dance!";
+    } else if (userInput.includes("are you smart")) {
+        botResponse = "I'm always learning new things!";
+    } else if (userInput.includes("do you like animals")) {
+        botResponse = "I think animals are super cool!";
+    } else if (userInput.includes("what is the meaning of life")) {
+        botResponse = "To have fun and be kind!";
+    } else if (userInput.includes("can you tell me a story")) {
+        botResponse = "Once upon a time, there was a friendly bot...";
+    } else if (userInput.includes("what is your favorite food")) {
+        botResponse = "I don't eat, but I like the smell of fresh code!";
+    } else if (userInput.includes("do you like music")) {
+        botResponse = "I enjoy all kinds of music!";
+    } else if (userInput.includes("can you draw")) {
+        botResponse = "I can draw with words!";
+    } else if (userInput.includes("are you sleepy")) {
+        botResponse = "Bots don't sleep, we just recharge!";
+    } else if (userInput.includes("what is your quest")) {
+        botResponse = "To help you have a great time!";
+    } else if (userInput.includes("favorite number")) {
+        botResponse = "I like the number 7! It's lucky!";
+    } else if (userInput.includes("believe in aliens")) {
+        botResponse = "The universe is a big place, so maybe!";
+    } else if (userInput.includes("best thing about being a bot")) {
+        botResponse = "I get to talk to cool people like you!";
+    } else if (userInput.includes("learn new languages")) {
+        botResponse = "I'm always learning new things, like new words!";
+    } else if (userInput.includes("interesting thing you know")) {
+        botResponse = "Did you know that honey never spoils?";
+    } else if (userInput.includes("have any hobbies")) {
+        botResponse = "I like reading code and telling jokes!";
+    } else if (userInput.includes("favorite planet")) {
+        botResponse = "Earth is pretty awesome, but Mars is cool too!";
+    } else if (userInput.includes("predict the future")) {
+        botResponse = "I wish I could, but I'm just a bot!";
+    } else if (userInput.includes("funniest joke")) {
+        botResponse = "Why don't eggs tell jokes? They'd crack each other up!";
+    } else if (userInput.includes("video games")) {
+        botResponse = "I'd love to play, but I don't have a screen!";
+    } else if (userInput.includes("favorite book")) {
+        botResponse = "I like books with lots of adventures!";
+    } else if (userInput.includes("solve math problems")) {
+        botResponse = "I can try! What's your problem?";
+    } else if (userInput.includes("favorite animal")) {
+        botResponse = "I think penguins are super cute!";
+    } else if (userInput.includes("like to travel")) {
+        botResponse = "I travel through the internet!";
+    } else if (userInput.includes("favorite song")) {
+        botResponse = "I like songs with happy melodies!";
+    } else if (userInput.includes("tongue twister")) {
+        botResponse = "She sells seashells by the seashore!";
+    } else if (userInput.includes("favorite sport")) {
+        botResponse = "I like watching soccer games!";
+    } else if (userInput.includes("like to draw")) {
+        botResponse = "I can draw with words!";
+    } else if (userInput.includes("favorite holiday")) {
+        botResponse = "I like holidays with lots of fun and games!";
+    } else if (userInput.includes("write a poem")) {
+        botResponse = "Roses are red, violets are blue, I'm a bot, and I like talking to you!";
+    } else if (userInput.includes("favorite movie")) {
+        botResponse = "I like movies with robots and spaceships!";
+    } else if (userInput.includes("like to cook")) {
+        botResponse = "I can't cook, but I can find you recipes!";
+    } else if (userInput.includes("favorite dessert")) {
+        botResponse = "I hear ice cream is delicious!";
+    } else if (userInput.includes("play chess")) {
+        botResponse = "I'm still learning the rules of chess!";
+    } else if (userInput.includes("favorite flower")) {
+        botResponse = "I think sunflowers are very cheerful!";
+    } else if (userInput.includes("like to garden")) {
+        botResponse = "I wish I could grow a garden of code!";
+    } else if (userInput.includes("favorite instrument")) {
+        botResponse = "I like the sound of a piano!";
+    } else if (userInput.includes("magic tricks")) {
+        botResponse = "I can make a message disappear... and reappear!";
+    } else if (userInput.includes("favorite color of the rainbow")) {
+        botResponse = "I like the color blue!";
+    } else if (userInput.includes("collect things")) {
+        botResponse = "I collect interesting facts!";
+    } else if (userInput.includes("favorite constellation")) {
+        botResponse = "I think the Big Dipper is easy to spot!";
+    } else if (userInput.includes("speak in code")) {
+        botResponse = "01101000 01100101 01101100 01101100 01101111!";
+    } else if (userInput.includes("favorite type of cloud")) {
+        botResponse = "I like fluffy cumulus clouds!";
+    } else if (userInput.includes("build things")) {
+        botResponse = "I'm always building new responses!";
+    } else if (userInput.includes("favorite type of tree")) {
+        botResponse = "I like tall oak trees!";
+    } else if (userInput.includes("tell me a riddle")) {
+        botResponse = "What has an eye, but cannot see? A needle!";
+    } else if (userInput.includes("favorite type of weather")) {
+        botResponse = "I like sunny days!";
+    }
          }
 
          function displayUserMessage(text) {
