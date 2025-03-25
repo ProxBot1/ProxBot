@@ -6,6 +6,33 @@
      <title>ProxBot</title>
      <style>
          body {
+             <div id="chat-history">
+        </div>
+
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button id="send-button">Send</button>
+
+    <button id="saveChatButton">Save Chat</button>
+
+    <script>
+        // ... (Your existing JavaScript code for ProxBot) ...
+
+        function saveChat() {
+            let chatHistory = document.getElementById("chat-history");
+            let chatText = chatHistory.innerText;
+
+            let tempTextarea = document.createElement("textarea");
+            tempTextarea.value = chatText;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextarea);
+
+            alert("Chat copied to clipboard!");
+        }
+
+        document.getElementById("saveChatButton").addEventListener("click", saveChat);
+
              font-family: sans-serif;
              display: flex;
              flex-direction: column;
