@@ -31,6 +31,61 @@
     <button id="saveChatButton">Save Chat</button>
 
     <script>
+           function playRPS(playerChoice) {
+    const choices = ['rock', 'paper', 'scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+    let result = "";
+
+    if (playerChoice === computerChoice) {
+        result = "It's a tie!";
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        result = "You win!";
+    } else {
+        result = "You lose!";
+    }
+
+    document.getElementById("rps-result").textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${result}`;
+}
+
+let tttBoard = ["", "", "", "", "", "", "", "", ""];
+let tttPlayer = "X";
+let tttGameActive = true;
+
+function playTTT(cellIndex) {
+    if (!tttBoard[cellIndex] && tttGameActive) {
+        tttBoard[cellIndex] = tttPlayer;
+        document.getElementsByClassName("ttt-cell")[cellIndex].textContent = tttPlayer;
+        checkTTTResult();
+        tttPlayer = tttPlayer === "X" ? "O" : "X";
+    }
+}
+
+function checkTTTResult() {
+    const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+    ];
+
+    for (let pattern of winPatterns) {
+        const [a, b, c] = pattern;
+        if (tttBoard[a] && tttBoard[a] === tttBoard[b] && tttBoard[a] === tttBoard[c]) {
+            document.getElementById("ttt-result").textContent = `${tttBoard[a]} wins!`;
+            tttGameActive = false;
+            return;
+        }
+    }
+
+    if (!tttBoard.includes("")) {
+        document.getElementById("ttt-result").textContent = "It's a tie!";
+        tttGameActive = false;
+    }
+}
         // ... (Your existing JavaScript code for ProxBot) ...
 
         function saveChat() {
