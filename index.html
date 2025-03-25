@@ -1,109 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="en">
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>ProxBot</title>
      <style>
-      #ttt-board {
-    display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-gap: 2px;
-}
-
-.ttt-cell {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    cursor: pointer;
-} 
          body {
-             <div id="chat-history">
-        </div>
-
-    <input type="text" id="user-input" placeholder="Type your message...">
-    <button id="send-button">Send</button>
-
-    <button id="saveChatButton">Save Chat</button>
-
-    <script>
-           function playRPS(playerChoice) {
-    const choices = ['rock', 'paper', 'scissors'];
-    const computerChoice = choices[Math.floor(Math.random() * 3)];
-
-    let result = "";
-
-    if (playerChoice === computerChoice) {
-        result = "It's a tie!";
-    } else if (
-        (playerChoice === 'rock' && computerChoice === 'scissors') ||
-        (playerChoice === 'paper' && computerChoice === 'rock') ||
-        (playerChoice === 'scissors' && computerChoice === 'paper')
-    ) {
-        result = "You win!";
-    } else {
-        result = "You lose!";
-    }
-
-    document.getElementById("rps-result").textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${result}`;
-}
-
-let tttBoard = ["", "", "", "", "", "", "", "", ""];
-let tttPlayer = "X";
-let tttGameActive = true;
-
-function playTTT(cellIndex) {
-    if (!tttBoard[cellIndex] && tttGameActive) {
-        tttBoard[cellIndex] = tttPlayer;
-        document.getElementsByClassName("ttt-cell")[cellIndex].textContent = tttPlayer;
-        checkTTTResult();
-        tttPlayer = tttPlayer === "X" ? "O" : "X";
-    }
-}
-
-function checkTTTResult() {
-    const winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-
-    for (let pattern of winPatterns) {
-        const [a, b, c] = pattern;
-        if (tttBoard[a] && tttBoard[a] === tttBoard[b] && tttBoard[a] === tttBoard[c]) {
-            document.getElementById("ttt-result").textContent = `${tttBoard[a]} wins!`;
-            tttGameActive = false;
-            return;
-        }
-    }
-
-    if (!tttBoard.includes("")) {
-        document.getElementById("ttt-result").textContent = "It's a tie!";
-        tttGameActive = false;
-    }
-}
-        // ... (Your existing JavaScript code for ProxBot) ...
-
-        function saveChat() {
-            let chatHistory = document.getElementById("chat-history");
-            let chatText = chatHistory.innerText;
-
-            let tempTextarea = document.createElement("textarea");
-            tempTextarea.value = chatText;
-            document.body.appendChild(tempTextarea);
-            tempTextarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempTextarea);
-
-            alert("Chat copied to clipboard!");
-        }
-
-        document.getElementById("saveChatButton").addEventListener("click", saveChat);
-
              font-family: sans-serif;
              display: flex;
              flex-direction: column;
@@ -362,30 +264,7 @@ function checkTTTResult() {
      </style>
  </head>
  <body>
-  <div id="rps-game">
-    <h2>Rock, Paper, Scissors</h2>
-    <button onclick="playRPS('rock')">Rock</button>
-    <button onclick="playRPS('paper')">Paper</button>
-    <button onclick="playRPS('scissors')">Scissors</button>
-    <p id="rps-result"></p>
-</div>
-
-<div id="ttt-game">
-    <h2>Tic-Tac-Toe</h2>
-    <div id="ttt-board">
-        <div class="ttt-cell" onclick="playTTT(0)"></div>
-        <div class="ttt-cell" onclick="playTTT(1)"></div>
-        <div class="ttt-cell" onclick="playTTT(2)"></div>
-        <div class="ttt-cell" onclick="playTTT(3)"></div>
-        <div class="ttt-cell" onclick="playTTT(4)"></div>
-        <div class="ttt-cell" onclick="playTTT(5)"></div>
-        <div class="ttt-cell" onclick="playTTT(6)"></div>
-        <div class="ttt-cell" onclick="playTTT(7)"></div>
-        <div class="ttt-cell" onclick="playTTT(8)"></div>
-    </div>
-    <p id="ttt-result"></p>
-</div> 
-     <h1>ProxBot</h1>
+     <h1>StellarAI</h1>
 
      <!-- Settings Modal (Simplified) -->
      <div id="settings-modal">
@@ -395,7 +274,7 @@ function checkTTTResult() {
 
              <!-- AI Selection Buttons -->
              <div id="ai-selection">
-                 <button type="button" class="ai-button" data-provider="ProxBot" onclick="selectAI('ProxBot')">ProxBot</button>
+                 <button type="button" class="ai-button" data-provider="stellarai" onclick="selectAI('stellarai')">StellarAI</button>
                  <button type="button" class="ai-button" data-provider="openai" onclick="selectAI('openai')">ChatGPT</button>
                  <button type="button" class="ai-button" data-provider="anthropic" onclick="selectAI('anthropic')">Claude</button>
              </div>
@@ -423,7 +302,7 @@ function checkTTTResult() {
                  <label for="stopSequencesInput">Stop Sequences (comma-separated):</label>
                  <input type="text" id="stopSequencesInput" placeholder="e.g., stop, end">
 
-                 <!-- Safety Settings (ProxBot/Gemini Only) -->
+                 <!-- Safety Settings (StellarAI/Gemini Only) -->
                  <div id="safetySettingsContainer">
                      <h3>Safety Settings</h3>
                      <div id="safetySettings">
@@ -457,19 +336,19 @@ function checkTTTResult() {
 
          // *** PLACE YOUR API KEYS HERE ***
          const apiKeys = {
-             ProxBot: "AIzaSyCwRGkB59np3kppkEMLSyfY7GuyDTNVUFw",
+             stellarai: "AIzaSyCwRGkB59np3kppkEMLSyfY7GuyDTNVUFw",
              openai: "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",
              anthropic: "YOUR_ANTHROPIC_API_KEY" // Claude Key
          }; // Fixed missing closing brace
 
-         let currentProvider = "ProxBot";
+         let currentProvider = "stellarai";
          let currentModel = "gemini-1.5-flash";
          let currentTemperature = 0.7;
          let currentStopSequences = [];
          let currentSafetySettings = getDefaultSafetySettings();
 
          const modelOptions = {
-             ProxBot: ["gemini-1.5-flash", "gemini-2.0-pro"],
+             stellarai: ["gemini-1.5-flash", "gemini-2.0-pro"],
              openai: ["gpt-4o", "gpt-3.5-turbo-0125"],
              anthropic: ["claude-3-opus-20240229", "claude-3-sonnet-20240229", "claude-3-haiku-20240307"],
          };
@@ -487,7 +366,7 @@ function checkTTTResult() {
 
              let data, headers, url;
 
-             if (currentProvider === "ProxBot") {
+             if (currentProvider === "stellarai") {
                  const safetySettings = currentSafetySettings;
                  const generationConfig = {
                      temperature: currentTemperature,
@@ -554,7 +433,7 @@ function checkTTTResult() {
                  const result = await response.json();
                  let responseText = "";
 
-                 if (currentProvider === "ProxBot") { // Changed provider name
+                 if (currentProvider === "stellarai") { // Changed provider name
                      if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
                          responseText = result.candidates[0].content.parts[0].text;
                      }
@@ -720,7 +599,7 @@ function checkTTTResult() {
              updateModelOptions();
              //Show/hide safety settings.
              const safetySettingsContainer = document.getElementById('safetySettingsContainer');
-             safetySettingsContainer.style.display = currentProvider ==='ProxBot' ? 'block': 'none';
+             safetySettingsContainer.style.display = currentProvider ==='stellarai' ? 'block': 'none';
 
          }
          function updateModelOptions() {
@@ -754,7 +633,7 @@ function checkTTTResult() {
                  .filter(s => s !== "");
 
              // Safety Settings (Gemini only)
-             if (currentProvider === "ProxBot") {
+             if (currentProvider === "stellarai") {
                  currentSafetySettings = [];
                  const safetySettingsDiv = document.getElementById('safetySettings');
                  const safetyGroups = safetySettingsDiv.querySelectorAll('.safety-setting-group');
